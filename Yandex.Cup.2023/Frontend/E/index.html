@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="KirillDyachkovskiy" />
+    <title>Fractal Tree</title>
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="icon" type="image/svg+xml" href="public/icon.svg" />
+  </head>
+
+  <body>
+    <main class="container">
+      <div class="bubbles">
+        <span style="--i: 11"></span>
+        <span style="--i: 12"></span>
+        <span style="--i: 24"></span>
+        <span style="--i: 10"></span>
+        <span style="--i: 14"></span>
+        <span style="--i: 23"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 19"></span>
+        <span style="--i: 20"></span>
+        <span style="--i: 22"></span>
+        <span style="--i: 25"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 21"></span>
+        <span style="--i: 15"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 26"></span>
+        <span style="--i: 17"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 23"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 23"></span>
+        <span style="--i: 24"></span>
+        <span style="--i: 11"></span>
+        <span style="--i: 14"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 23"></span>
+        <span style="--i: 25"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 11"></span>
+        <span style="--i: 22"></span>
+        <span style="--i: 18"></span>
+        <span style="--i: 21"></span>
+        <span style="--i: 15"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 26"></span>
+        <span style="--i: 17"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 28"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 19"></span>
+        <span style="--i: 26"></span>
+        <span style="--i: 17"></span>
+        <span style="--i: 13"></span>
+        <span style="--i: 28"></span>
+        <span style="--i: 16"></span>
+        <span style="--i: 22"></span>
+        <span style="--i: 26"></span>
+        <span style="--i: 17"></span>
+      </div>
+      <canvas
+        class="canvas"
+        id="fractalTree"
+        width="1024"
+        height="768"
+      ></canvas>
+      <div class="controls">
+        <label class="control">
+          <span>Length:</span>
+          <input
+            class="control__range"
+            id="lengthInput"
+            type="range"
+            min="50"
+            max="150"
+            value="550"
+          />
+        </label>
+        <label class="control">
+          <span>Angle:</span>
+          <input
+            class="control__range"
+            id="angleInput"
+            type="range"
+            min="0"
+            max="60"
+            value="15"
+          />
+        </label>
+        <label class="control">
+          <span>Depth:</span>
+          <input
+            class="control__range"
+            id="depthInput"
+            type="range"
+            min="0.5"
+            max="0.8"
+            step="0.05"
+            value="0.8"
+          />
+        </label>
+      </div>
+    </main>
+    <script src="computing.js"></script>
+    <script src="drawTree.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

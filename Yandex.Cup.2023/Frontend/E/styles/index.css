@@ -1,0 +1,25 @@
+@import url("bubbles.css");
+@import url("main.css");
+
+:root {
+  --color-brand-dark: #010223;
+  --color-brand-green: #00b341;
+  --color-salad: #a8db10;
+  --color-salad-50: #a8db1044;
+  --color-white: #fff;
+  --color-yellow: #ffb800;
+  --color-yellow-50: #ffb80044;
+
+  --text-font-size: 18px;
+  --text-color: var(--color-white);
+
+  --spacing-2: 8px;
+  --spacing-4: 16px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: var(--color-brand-dark);
+  color: var(--text-color);
+}

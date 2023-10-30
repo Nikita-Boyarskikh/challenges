@@ -1,0 +1,48 @@
+.bubbles {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bubbles span {
+  --_-size: 20px;
+
+  border-radius: 50%;
+  opacity: 0;
+  width: var(--_-size);
+  height: var(--_-size);
+
+  animation: fall 15s linear infinite;
+  animation-duration: calc(150s / var(--i) + var(--i) * var(--i) * 0.1s);
+  animation-delay: calc(var(--i) * 1s - 10s);
+
+  z-index: var(--i);
+}
+
+.bubbles span:nth-child(odd) {
+  background: var(--color-yellow);
+  box-shadow: 0 0 0 10px var(--color-yellow-50), 0 0 30px var(--color-yellow),
+    0 0 60px var(--color-yellow);
+}
+
+.bubbles span:nth-child(even) {
+  background: var(--color-salad);
+  box-shadow: 0 0 0 10px var(--color-salad-50), 0 0 30px var(--color-salad),
+    0 0 60px var(--color-salad);
+}
+
+@keyframes fall {
+  0% {
+    translate: 0 0;
+    scale: 0.2;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    translate: 0 800px;
+    opacity: 0;
+  }
+}

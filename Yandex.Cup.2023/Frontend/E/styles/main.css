@@ -1,0 +1,35 @@
+.canvas {
+  position: relative;
+  z-index: 20;
+}
+
+.container {
+  width: 1024px;
+  margin-inline: auto;
+}
+
+.controls {
+  margin-block-start: var(--spacing-4);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+
+  padding-block: var(--spacing-4);
+  padding-inline: 100px;
+  border-radius: var(--spacing-4);
+
+  border-color: var(--color-brand-green);
+  box-shadow: 0 0 10px var(--color-brand-green);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-font-size);
+}
+
+.control__range {
+  flex-grow: 1;
+}

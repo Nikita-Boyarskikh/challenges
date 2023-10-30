@@ -1,0 +1,10 @@
+{
+  "name": "leaks",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "node run.js"
+  },
+  "author": "v-homyakov",
+  "license": "ISC"
+}

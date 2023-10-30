@@ -1,0 +1,208 @@
+:root {
+    --mars-position-top: 75%;
+    --mars-position-left: 30%;
+    --deimos-position-top: 40%;
+    --deimos-position-left: 70%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+.tests-container {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .test-case-buttons {
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        button {
+            background-color: #fff;
+            border: 1px solid #999;
+            appearance: none;
+            padding: 0.4em 0.8em;
+        }
+    }
+
+    .test-expectations {
+        color: #fff;
+    }
+}
+
+.cosmic-body {
+    position: absolute;
+    z-index: 2;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 100%;
+    overflow: hidden;
+    z-index: 2;
+    top: var(--body-position-top);
+    left: var(--body-position-left);
+    height: var(--body-size);
+    width: var(--body-size);
+    margin-left: calc(var(--body-size) / -2);
+    margin-top: calc(var(--body-size) / -2);
+
+    &.mars {
+        --body-position-top: var(--mars-position-top);
+        --body-position-left: var(--mars-position-left);
+        --body-size: 240px;
+        --surface-color: #ff5f40;
+
+        .satellite-dish {
+            width: 40px;
+            height: 40px;
+            background: center / contain no-repeat url(./satellite-dish.svg);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -30px;
+            margin-left: -20px;
+        }
+    }
+
+    &.deimos {
+        --body-position-top: var(--deimos-position-top);
+        --body-position-left: var(--deimos-position-left);
+        --body-size: 120px;
+        --surface-color: rgb(141, 141, 141);
+
+        .surface {
+            border: none;
+        }
+
+        .crater1 {
+            top: 70%;
+            left: 20%;
+        }
+    }
+
+    .surface {
+        position: absolute;
+        border-radius: 100%;
+        height: 140%;
+        width: 140%;
+        top: -30%;
+        right: -10%;
+        box-sizing: border-box;
+        border: 30px solid rgba(0, 0, 0, 0.15);
+        background: var(--surface-color);
+    }
+
+    .crater {
+        position: absolute;
+        border-radius: 100%;
+        background: rgba(0, 0, 0, 0.15);
+        box-shadow: inset 3px 3px 0 rgba(0, 0, 0, 0.2);
+        height: calc(var(--body-size) / 5);
+        width: calc(var(--body-size) / 5);
+
+        &__small {
+            height: calc(var(--body-size) / 10);
+            width: calc(var(--body-size) / 10);
+            box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        &.crater1 {
+            top: 32%;
+            left: 17%;
+        }
+
+        &.crater2 {
+            top: 26%;
+            left: 55%;
+        }
+
+        &.crater3 {
+            top: 60%;
+            left: 40%;
+        }
+
+        &.crater4 {
+            top: 80%;
+            left: 60%;
+        }
+
+        &.crater5 {
+            top: 20%;
+            left: 20%;
+        }
+    }
+
+    .transmitters-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 0;
+
+        .transmitter {
+            width: 20px;
+            height: 30px;
+            background: center / contain no-repeat url(./antenna.svg);
+        }
+    }
+}
+
+@keyframes raySlide {
+    0% {
+        top: 0;
+        left: 100%;
+    }
+
+    99% {
+        top: 90%;
+        left: 0%;
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.transmitter-rays-container {
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+
+    .ray {
+        position: absolute;
+        height: 3px;
+        background: rgb(241, 253, 188);
+        border-radius: 5px;
+        box-shadow: 0 0 3px #fff;
+        animation-duration: 3s;
+        animation-name: raySlide;
+        animation-iteration-count: 1;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+
+        &.long {
+            width: 30px;
+        }
+
+        &.short {
+            width: 10px;
+        }
+    }
+}

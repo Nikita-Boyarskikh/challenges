@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+    </head>
+    <body>
+        <div id="app">
+            <div class="tests-container">
+                <div class="tests">
+                    <div class="test-case-buttons">
+                        <button id="testcase1">Тест кейс 1</button>
+                        <button id="testcase2">Тест кейс 2</button>
+                    </div>
+
+                    <div class="test-expectations">
+                        <div>
+                            Получили
+                            <div id="result"></div>
+                        </div>
+                        <div>
+                            Ожидали
+                            <div id="expected"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cosmic-body mars">
+                <div class="surface"></div>
+                <div class="crater crater1"></div>
+                <div class="crater crater__small crater2"></div>
+                <div class="crater crater__small crater3"></div>
+                <div class="satellite-dish"></div>
+            </div>
+
+            <div class="cosmic-body deimos">
+                <div class="surface"></div>
+                <div class="crater crater__small crater2"></div>
+                <div class="crater crater__small crater3"></div>
+                <div class="crater crater__small crater4"></div>
+                <div class="crater crater__small crater5"></div>
+                <div class="transmitters-container"></div>
+            </div>
+        </div>
+    </body>
+</html>

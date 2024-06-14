@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "J"
+authors = [
+    {name = "Nikita Boyarskikh", email = "N02@ya.ru"},
+]
+description = "Solution for task J of Yandex.Algorithm training course 5.0"
+readme = "README.md"
+requires-python = ">=3.12"
+keywords = ["one", "two"]
+license = {text = "MIT License"}
+classifiers = [
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+dynamic = ["version"]
+
+[project.scripts]
+test-j = "J:main"
+
+[project.urls]
+Documentation = "https://contest.yandex.ru/contest/59539/problems/J"

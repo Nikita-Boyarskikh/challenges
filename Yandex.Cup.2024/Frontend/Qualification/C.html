@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<style>
+  :root {
+    --input-size: 28px;
+    --input-offset: 16px;
+    --input-gap: 8px;
+
+    --card-width: 70px;
+    --card-height: 110px;
+
+    --cards-count: 7;
+    --cards-offset: -41px;
+    --cards-width: calc(
+        (var(--card-width) + var(--cards-offset)) * var(--cards-count) - var(--cards-offset)
+    );
+
+    --global-top-padding: 30px;
+    --global-left-padding: 30px;
+    --global-right-padding: 30px;
+    --global-bottom-padding: 34px;
+
+    --cy: calc((100vh - var(--global-top-padding) - var(--global-bottom-padding) - var(--card-height)) / 2);
+    --cx: calc((100vw - var(--global-left-padding) - var(--global-right-padding) - var(--cards-width)) / 2);
+    --left-base: calc(var(--global-left-padding) + var(--cx));
+    --top-base: calc(var(--global-top-padding) + var(--cy));
+  }
+
+  html, body {
+    margin: 0;
+    width: 100%;
+  }
+  body {
+    background: #111111;
+  }
+
+  #players-2, #players-2 + label {
+    left: calc(
+        var(--input-offset) + 0 * (var(--input-size) + var(--input-gap))
+    );
+  }
+  #players-3, #players-3 + label {
+    left: calc(
+        var(--input-offset) + 1 * (var(--input-size) + var(--input-gap))
+    );
+  }
+  #players-4, #players-4 + label {
+    left: calc(
+        var(--input-offset) + 2 * (var(--input-size) + var(--input-gap))
+    );
+  }
+  #players-5, #players-5 + label {
+    left: calc(
+        var(--input-offset) + 3 * (var(--input-size) + var(--input-gap))
+    );
+  }
+  #players-6, #players-6 + label {
+    left: calc(
+        var(--input-offset) + 4 * (var(--input-size) + var(--input-gap))
+    );
+  }
+  label {
+    position: absolute;
+    top: var(--input-offset);
+    text-align: center;
+    width: var(--input-size);
+    line-height: var(--input-size);
+  }
+  input {
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: absolute;
+    background: #FAFF00;
+    border-radius: 4px;
+    top: var(--input-offset);
+    width: var(--input-size);
+    height: var(--input-size);
+  }
+  input:checked {
+    background: #DC44CD;
+  }
+
+  #players-2:checked ~ .cards1 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 2 * 0 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 2 * 0 + 90deg));
+  }
+  #players-2:checked ~ .cards2 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 2 * 1 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 2 * 1 + 90deg));
+  }
+
+  #players-3:checked ~ .cards1 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 3 * 0 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 3 * 0 + 90deg));
+  }
+  #players-3:checked ~ .cards2 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 3 * 1 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 3 * 1 + 90deg));
+  }
+  #players-3:checked ~ .cards3 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 3 * 2 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 3 * 2 + 90deg));
+  }
+
+  #players-4:checked ~ .cards1 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 4 * 0 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 4 * 0 + 90deg));
+  }
+  #players-4:checked ~ .cards2 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 4 * 1 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 4 * 1 + 90deg));
+  }
+  #players-4:checked ~ .cards3 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 4 * 2 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 4 * 2 + 90deg));
+  }
+  #players-4:checked ~ .cards4 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 4 * 3 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 4 * 3 + 90deg));
+  }
+
+  #players-5:checked ~ .cards1 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 5 * 0 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 5 * 0 + 90deg));
+  }
+  #players-5:checked ~ .cards2 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 5 * 1 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 5 * 1 + 90deg));
+  }
+  #players-5:checked ~ .cards3 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 5 * 2 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 5 * 2 + 90deg));
+  }
+  #players-5:checked ~ .cards4 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 5 * 3 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 5 * 3 + 90deg));
+  }
+  #players-5:checked ~ .cards5 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 5 * 4 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 5 * 4 + 90deg));
+  }
+
+  #players-6:checked ~ .cards1 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 6 * 0 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 6 * 0 + 90deg));
+  }
+  #players-6:checked ~ .cards2 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 6 * 1 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 6 * 1 + 90deg));
+  }
+  #players-6:checked ~ .cards3 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 6 * 2 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 6 * 2 + 90deg));
+  }
+  #players-6:checked ~ .cards4 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 6 * 3 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 6 * 3 + 90deg));
+  }
+  #players-6:checked ~ .cards5 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 6 * 4 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 6 * 4 + 90deg));
+  }
+  #players-6:checked ~ .cards6 {
+    display: flex;
+    top: calc(var(--top-base) - var(--cy) * sin(360deg / 6 * 5 + 90deg));
+    left: calc(var(--left-base) + var(--cx) * cos(360deg / 6 * 5 + 90deg));
+  }
+
+  .cards {
+    display: none;
+    position: absolute;
+  }
+  .card {
+    height: var(--card-height);
+    width: var(--card-width);
+    background: white no-repeat center;
+    border-radius: 4px;
+    border: solid black 1px;
+    margin-right: var(--cards-offset);
+    box-sizing: border-box;
+  }
+  .top {
+    background-image: url(./card-face.svg);
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>C</title>
+</head>
+<body>
+  <input type="radio" id="players-2" name="players" checked><label for="players-2">2</label>
+  <input type="radio" id="players-3" name="players"><label for="players-3">3</label>
+  <input type="radio" id="players-4" name="players"><label for="players-4">4</label>
+  <input type="radio" id="players-5" name="players"><label for="players-5">5</label>
+  <input type="radio" id="players-6" name="players"><label for="players-6">6</label>
+
+  <div class="cards cards1">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card top"></div>
+  </div>
+
+  <div class="cards cards2">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card top"></div>
+  </div>
+
+  <div class="cards cards3">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card top"></div>
+  </div>
+
+  <div class="cards cards4">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card top"></div>
+  </div>
+
+  <div class="cards cards5">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card top"></div>
+  </div>
+
+  <div class="cards cards6">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card top"></div>
+  </div>
+</body>
+</html>

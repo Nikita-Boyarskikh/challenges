@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #root {
+        border: solid 1px lightgray;
+        width: 400px;
+        height: 400px;
+        position: relative;
+      }
+      .box {
+        padding: 4px;
+        position: absolute;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    // Helpers for playground
+    const root = document.getElementById("root");
+    const logs = document.getElementById("logs");
+    const colors = [
+      "Chartreuse",
+      "DarkGreen",
+      "DarkOliveGreen",
+      "DarkSeaGreen",
+      "ForestGreen",
+      "Green",
+      "GreenYellow",
+      "LawnGreen",
+      "SeaGreen",
+      "Lime",
+      "LimeGreen",
+      "LightGreen",
+      "MediumSeaGreen",
+      "MediumSpringGreen",
+      "Olive",
+      "OliveDrab",
+      "PaleGreen",
+      "SpringGreen",
+      "YellowGreen",
+    ];
+    const borderColor = "tomato";
+    let colorIndex = 0;
+    function getColor() {
+      const res = colors[colorIndex];
+      colorIndex += 1;
+      if (colorIndex >= colors.length) {
+        colorIndex = 0;
+      }
+      return res;
+    }
+    function drawRect(x1, y1, x2, y2, type = "fill", text, color) {
+      const rect = document.createElement("div");
+      if (text) rect.innerHTML = text;
+      rect.classList.add("box");
+      rect.style.setProperty("left", `${x1 * 25}px`);
+      rect.style.setProperty("top", `${y1 * 25}px`);
+      rect.style.setProperty("width", `${(x2 - x1) * 25}px`);
+      rect.style.setProperty("height", `${(y2 - y1) * 25}px`);
+      if (type === "fill") {
+        rect.style.setProperty("background-color", color || getColor());
+      } else {
+        rect.style.setProperty("border", `solid 2px ${color || borderColor}`);
+      }
+      root.appendChild(rect);
+    }
+
+    // Your test case
+    const rects = [
+      [4, 4, 8, 8],
+      [6, 6, 10, 10],
+      [4, 12, 8, 16],
+    ];
+
+    // Your solution
+    function left(rect) {
+      return Math.min(rect[0], rect[2]);
+    }
+    function right(rect) {
+      return Math.max(rect[0], rect[2]);
+    }
+    function top_(rect) {
+      return Math.min(rect[1], rect[3]);
+    }
+    function bottom(rect) {
+      return Math.max(rect[1], rect[3]);
+    }
+
+    function isIntersects(rect1, rect2) {
+      return (
+        left(rect1) < right(rect2)
+        && left(rect2) < right(rect1)
+        && top_(rect1) < bottom(rect2)
+        && top_(rect2) < bottom(rect1)
+      );
+    }
+
+    function getBox(rect1, rect2) {
+      return [
+        Math.min(left(rect1), left(rect2)),
+        Math.min(top_(rect1), top_(rect2)),
+        Math.max(right(rect1), right(rect2)),
+        Math.max(bottom(rect1), bottom(rect2)),
+      ];
+    }
+
+    function solution(maps) {
+      const groups = {};
+      const pages = [];
+      let pageIdx = 0;
+
+      const createPage = (mapIdx) => {
+        const page = {box: maps[mapIdx], indexes: [mapIdx]};
+        const idx = pageIdx++;
+        groups[mapIdx] = idx;
+        pages[idx] = page;
+        return idx;
+      };
+
+      const mergePages = (page1Idx, page2Idx) => {
+        const page1 = pages[page1Idx];
+        const page2 = pages[page2Idx];
+
+        delete pages[page1Idx];
+        delete pages[page2Idx];
+
+        const idx = pageIdx++;
+        pages[idx] = {
+          box: getBox(page1.box, page2.box),
+          indexes: [...new Set(page1.indexes.concat(page2.indexes))],
+        };
+        return idx;
+      };
+
+      const addToPage = (mapIdx, toMapIdx) => {
+        const pageIdx = groups[toMapIdx] ?? createPage(toMapIdx);
+
+        if (mapIdx in groups) {
+          const newPageIdx = mergePages(pageIdx, groups[mapIdx]);
+          groups[mapIdx] = newPageIdx;
+          groups[toMapIdx] = newPageIdx;
+          return pages[newPageIdx];
+        }
+
+        groups[mapIdx] = pageIdx;
+
+        const map = maps[mapIdx];
+        const page = pages[pageIdx];
+        page.indexes.push(mapIdx);
+        page.box = getBox(page.box, map);
+        return page;
+      };
+
+      for (let i = 0; i < maps.length; i++) {
+        for (let j = i + 1; j < maps.length; j++) {
+          if (isIntersects(maps[i], maps[j])) {
+            addToPage(j, i);
+          }
+        }
+
+        if (!(i in groups)) {
+          createPage(i);
+        }
+      }
+
+      return Object.values(pages);
+    }
+
+    // Draw test case
+    rects.forEach((box) => drawRect(...box));
+    // Run your code
+    solution(rects).forEach(({ box, indexes }) => {
+      console.log(box, indexes)
+      drawRect(...box, "border", `[${indexes.join(", ")}]`);
+    });
+  </script>
+</html>

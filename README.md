@@ -1,2 +1,2 @@
 # challenges
-Some thinks from code challenges in which I ever participated
+Some things from code challenges in which I ever participated
